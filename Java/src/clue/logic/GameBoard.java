@@ -10,8 +10,8 @@ public class GameBoard {
 
   private int _minWidth = 0;
   private int _minHeight = 0;
-  private int _maxWidth = 24;
-  private int _maxHeight = 26;
+  private int _maxWidth = 25;
+  private int _maxHeight = 25;
 
   GameSquare[][] _board;
   List<GamePiece> _peices;
@@ -38,16 +38,29 @@ public class GameBoard {
 
 	public boolean isStartSquare(int x, int y) {
 
-		if(x == _minWidth && (y == 7 || y == 16) {
+		if(x == _minWidth && (y == 7 || y == 16)) {
 			return true;
 		}
-		else if (x == _maxWidth && (y == 9 || y == 14)) {
+		else if (x == (_maxWidth - 1) && (y == 9 || y == 14)) {
 			return true;
 		}
 		else if (y == _minHeight && (x == 5 || x == 18)) {
 			return true;
 		}
-		else if (y == _maxHeight && (x == 6 || x == 7)) {
+		else if (y == _maxHeight && (x == 6 || x == 17)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isMiscClosedSquare(int x, int y) {
+		if ((x == 6 || x == 8) && y == 23) {
+			return true;
+		} 
+		else if (x == 16 && y == 23) {
+			return true;
+		}
+		else if (x == 23 && (y == 6 || y == 17)) {
 			return true;
 		}
 		return false;
@@ -67,7 +80,7 @@ public class GameBoard {
 		else if (x == _minWidth || x == (_maxWidth - 1)) {
 			return false;
 		}
-		else if (y == _minHeight || (y == (_maxHeight - 1)) {
+		else if (y == _minHeight || y == (_maxHeight - 1)) {
 			return false;
 		}
 		//Study
@@ -103,15 +116,11 @@ public class GameBoard {
 			return false;
 		}
 		//Ball Room
-		else if (x > 16 && x < 23 && y > 7 && y < 9) {
+		else if (x > 16 && x < 23 && y > 7 && y < 16) {
 			return false;
 		}
 		//Ball Room 2
-		else if (x > 16 && x < _maxWidth && y > 8 && y < 14) {
-			return false;
-		}
-		//Ball Room 2
-		else if (x > 16 && x < _maxWidth && y > 13 && y < 16) {
+		else if (x > 16 && x < _maxWidth && y > 9 && y < 14) {
 			return false;
 		}
 		//Lounge
@@ -119,17 +128,20 @@ public class GameBoard {
 			return false;
 		}
 		//Dining Room
-		else if (x > 8 && x < 15 && y > 17 && y < 21) {
+		else if (x > 8 && x < 15 && y > 15 && y < 21) {
 			return false;
 		}
 		//Dining Room 2
-		else if (x > 8 && x < 16 && y > 20 && y < _maxHeight) {
+		else if (x > 8 && x < 16 && y > 18 && y < _maxHeight) {
 			return false;
 		}
 		//Kitchen
-		else if (x > 17 && x < _maxWidth && y > 19 && y < _maxHeight) {
+		else if (x > 17 && x < _maxWidth && y > 17 && y < _maxHeight) {
 			return false;
 		}
+		else if (isMiscClosedSquare(x, y)) {
+			return false;
+		} 
 		else {
 			return true;
 		}
@@ -138,11 +150,23 @@ public class GameBoard {
 	public String toString() {
 		GameSquare square;
 		StringBuilder builder = new StringBuilder();
-		for(int x = 0; x < _maxWidth; ++x) {
-			for(int y = 0; y < _maxHeight; ++y) {
-				square = _board[x][y];
+
+		for(int x = 0; x < _maxWidth + 1; ++x) {
+			for(int y = 0; y < _maxHeight + 1; ++y) {
+				
+				if(x == _maxWidth)  {
+					builder.append("[" + y % 10 + "]");
+					continue;
+				}
+				else if(y == _maxHeight) {
+					builder.append("[" + x % 10 + "]");
+					continue;
+				}
+						
+				square = _board[x][y];					
+			
 				if(square.isValid()) {
-					builder.append("[ ]");
+					builder.append("[ ]");					
 				}
 				else {
 					builder.append("{X}");
