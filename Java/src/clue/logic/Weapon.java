@@ -11,8 +11,8 @@ public class Weapon extends Card {
     }
 
     public Weapon(Name weapon) {
+        
         super(weapon.toSring());
-
         name = weapon;
     }
 
