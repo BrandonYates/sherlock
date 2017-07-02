@@ -13,8 +13,4 @@ public enum CardType {
         label = str;
         index = i;
     }
-
-    public String toString() {
-        return this.label;
-    }
 }

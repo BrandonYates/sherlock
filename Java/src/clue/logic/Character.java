@@ -1,29 +1,16 @@
-package clue.test;
+package clue.logic;
 
 public class Character extends Card {
 
-    CharacterName name;
+    private Name name;
 
-    public Character(String label, CharacterName character) {
+    public Character(String label, String character) {
         super(label);
 
-        name = character;
+        name = Name.of(character);
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("id: ");
-        sb.append(_id);
-        sb.append(" | ");
-        sb.append(label);
-        sb.append(" | ");
-        sb.append(_cardType);
-        
-        return sb.toString();
-    }
-
-    public enum Name() {
+    public enum Name {
         MUSTARD("Colonel Mustard"),
         PLUM("Professor Plum"), 
         MRGREEN("Mr. Green"), 
@@ -31,12 +18,20 @@ public class Character extends Card {
         SCARLET("Miss Scarlet"), 
         WHITE("Mrs. White");
 
-        private final label;
+        private final String label;
 
-        private CharacterName(String name) {
+        private Name(String name) {
             label = name;
         }
 
+        public static Name of(String aName) {
+            for (Name name : Name.values()) {
+                if(aName.equals(name.toSring())) {
+                    return name;
+                }
+            }
+            return null;
+        }
         public String toSring() {
             return label;
         }
