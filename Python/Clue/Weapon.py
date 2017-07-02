@@ -1,12 +1,34 @@
 #!/usr/bin/python
 
+class Weapon(Card):
+    _weaponId = None
+
+    def __init__(self, ID, label, weaponId):
+        self._id = ID
+        self._label = label
+        self._cardType = CardType(CardType.weapon)
+        self._weaponId = WeaponName(weaponId)
+
+    def __str__(self):
+        return ''.join((
+            "id: ",
+            self._id,
+            " | ",
+            self._label,
+            " | ",
+            self._weaponId
+        ))
+    
+    def getWeaponId(self):
+        return self._weaponId
+
 class WeaponName:
     
     _weaponName = None
     _names = ["REVOLVER", "CANDLESTICK", "LEADPIPE",
               "KNIFE", "ROPE", "WRENCH"]
 
-    def __init__(self, name);
+    def __init__(self, name):
 
         index = None
 

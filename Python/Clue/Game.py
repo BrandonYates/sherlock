@@ -1,6 +1,50 @@
 #!/usr/bin/python
 
-class GameBoard:
+from .Card import CharacterName
+
+class GameObject():
+    _id = 0;
+    _label = "default label"
+
+    def __init__(self, ID, label):
+        self._id = ID
+        self._label = label
+        
+    def __str__(self):
+        return ''.join((
+            "id: ",
+            self._id,
+            " | ",
+            self._label
+        ))
+
+    def getId(self):
+        return self._id
+
+    def getLabel(self):
+        return self._label
+
+class GamePeice(GameObject):
+    _x = None
+    _y = None
+
+    def __init__(self, ID, label, x, y):
+        self._id = ID
+        self._label = label
+        self._x = x
+        self._y = y
+
+    def getX(self):
+        return self._x
+
+    def getY(self):
+        return self._y
+
+    def move(self, newX, newY):
+        self._x = newX
+        self._y = newY
+
+class GameBoard():
     _minWidth = 0
     _minHeight = 0
     _maxWidth = 23
@@ -9,13 +53,16 @@ class GameBoard:
     _board = None
     _peices = None
 
-    @property
+
+    print CharacterName.missScarlet
+    """
     startSquares = {CharacterName.missScarlet : [_minWidth, 17],
                      CharacterName.profPlum : [6, _minHeight],
                      CharacterName.colMustard: [7, _maxHeight],
                      CharacterName.mrsPeacock : [18, _minHeight],
                      CharacterName.mrsWhite : [_maxWidth, 14],
                      CharacterName.mrGreen : [_maxWidth, 9]}
+    """
 
     def __init__(self):
 
@@ -31,9 +78,9 @@ class GameBoard:
 
     def initSquare(x, y):
 
-        valid = isValidPosition(x,y):
+        valid = isValidPosition(x,y)
 
-        return GameSquare(False, valid, None):
+        return GameSquare(False, valid, None)
 
     def isStartSquare(x, y):
         if x == _minWidth and y == 17:
@@ -131,3 +178,37 @@ class GameBoard:
 
     def movePiece(self, peiceName):
     """
+
+class GameSquare:
+    _occupied = False
+    _valid = False
+    _peice = None
+
+    def __init__(self, occupied, valid, peice):
+
+        self._occupied = occupied
+        self._valid = valid
+        self._peice = peice
+
+    def setValid(self):
+        self._valid = True
+
+    def setPeice(self, peice):
+
+        if not self._occupied and not peice is None:
+           self._peice = peice
+           self._occupied = True
+        elif peice is None:
+            self._occupied = False
+            self._peice = peice
+
+        #update square if unoccupied
+        #returns None if occupied
+        #returns the correct state of the object
+        return self._peice
+
+    def isValid():
+        return self._valid
+
+    def isOccupied():
+        return self._occupied

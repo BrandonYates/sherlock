@@ -4,6 +4,10 @@
 
 from Clue import *
 
+print("I ran!")
+
 board = GameBoard()
 
-print board
+#print board
+
+

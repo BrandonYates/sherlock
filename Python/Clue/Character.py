@@ -1,37 +1,37 @@
-#!/usr/bin/python
+#/usr/bin/python
 
-class CharacterName:
+class Character(Card):
+    _characterId = None
+
+    def __init__(self, ID, label, characterId):
+        self._id = ID
+        self._label = label
+        self._cardType = CardType(CardType.character)
+        self._characterId = CharacterName(characterId)
+
+    def __str__(self):
+        return ''.join((
+            "id: ",
+            self._id,
+            " | ",
+            self._label,
+            " | ",
+            self._characterId
+        ))
+    
+    def getRoomId(self):
+        return self._characterId
+
+class CharacterName():
     
     _names = ["COLMUSTARD", "PROFPLUM", "MRGREEN",
               "MRSPEACOCK", "MISSSCARLET", "MRSWHITE"]
-    @property
     colMustard = "COLMUSTARD"
-    @property
     profPlum = "PROFPLUM"
-    @property
     mrGreen = "MRGREEN"
-    @property
     mrsPeacock = "MRSPEACOCK"
-    @property
     missScarlet = "MISSSCARLET"
-    @property
     mrsWhite = "MRSWHITE"
-
-    def __init__(self, name);
-
-        index = None
-
-        #check for numeric input then string input
-        try:
-            index = int(name)
-        except ValueError:
-            index = getCharacterNameIndex(name)
-
-        if index > 0 and index < 3:
-                self._characterName = _names.get(index)
-                return True
-        else:
-            return False
 
     @staticmethod
     def getCharacterNameIndex(x):
