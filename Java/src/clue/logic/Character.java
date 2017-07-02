@@ -4,10 +4,16 @@ public class Character extends Card {
 
     private Name name;
 
-    public Character(String label, String character) {
-        super(label);
-
+    public Character(String character) {
+        
+        super(character);
         name = Name.of(character);
+    }
+
+    public Character(Name character) {
+        
+        super(character.toSring());
+        name = character;
     }
 
     public enum Name {

@@ -4,10 +4,16 @@ public class Weapon extends Card {
 
     private Name name;
 
-    public Weapon(String label, String weapon) {
-        super(label);
+    public Weapon(String weapon) {
+        super(weapon);
 
         name = Name.of(weapon);
+    }
+
+    public Weapon(Name weapon) {
+        super(weapon.toSring());
+
+        name = weapon;
     }
 
     public enum Name {

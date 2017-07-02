@@ -4,10 +4,16 @@ public class Room extends Card {
 
     private Name name;
 
-    public Room(String label, String room) {
-        super(label);
+    public Room(String label) {
 
-        name = Name.of(room);
+        super(label);
+        name = Name.of(label);
+    }
+
+    public Room(Name aName) {
+        
+        super(aName.toSring());
+        name = aName;
     }
 
     public enum Name {
