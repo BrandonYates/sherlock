@@ -7,10 +7,20 @@ import java.util.HashMap;
 
 public class PlayerKnowledge {
 
+    public enum Info {
+        HAS, HASNOT, UNKNOWN
+    }
+
     List<Character> _characters;
     List<Weapon> _weapons;
     List<Room> _rooms;
-    Map<String, Boolean> _known; 
+
+    //maps the name of a card to what an external player
+    //could know about their knowledge
+    //example: Player 1 was handed the Rope card as evidence
+    //against an accusation. Thus in the Rope card is mapped to HAS 
+    //Because Player 1 knows that Player 2 HAS that card
+    Map<String, Info> _known; 
 
     public PlayerKnowledge(List<Card> cards) {
 
@@ -21,19 +31,19 @@ public class PlayerKnowledge {
 
         for(Character.Name name: Character.Name.values()) {
             _characters.add(new Character(name));
-            _known.put(name.toString(), false);
+            _known.put(name.toString(), Info.UNKNOWN);
         }
         for(Weapon.Name name: Weapon.Name.values()) {
             _weapons.add(new Weapon(name));
-            _known.put(name.toString(), false);            
+            _known.put(name.toString(), Info.UNKNOWN);            
         }
         for(Room.Name name: Room.Name.values()) {
             _rooms.add(new Room(name));
-            _known.put(name.toString(), false);
+            _known.put(name.toString(), Info.UNKNOWN);
         }
 
         for(Card card: cards) {
-            _known.put(card.toString(), true);
+            _known.put(card.toString(), Info.HAS);
         }
     }
 }
