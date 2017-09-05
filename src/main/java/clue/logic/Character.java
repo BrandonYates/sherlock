@@ -39,7 +39,6 @@ public class Character extends Card {
         }
 
         public static Name of(String aName) {
-            System.out.println("aName: " + aName);
             for (Name name : Name.values()) {
                 if(aName.equals(name.toSring())) {
                     return name;

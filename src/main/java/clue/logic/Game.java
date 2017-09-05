@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Game extends GameObject {
 
-
     public Game() {
         super();
     }
@@ -44,7 +43,29 @@ public class Game extends GameObject {
         }
     }
 
+    public void makeDeck() {
+        _deck = new ArrayList<>();
+
+        for(Room.Name name: Room.Name.values()) {
+            Room roomCard = new Room(name);
+            _deck.add(roomCard);
+        }
+        for(Character.Name name: Character.Name.values()) {
+            Character characterCard = new Character(name);
+            _deck.add(characterCard);
+        }
+        for(Weapon.Name name: Weapon.Name.values()) {
+            Weapon weaponCard = new Weapon(name);
+            _deck.add(weaponCard);
+        }
+    }
+
+    public void assignCards() {
+
+    }
+
     private List<Player> _players;
+    private List<Card> _deck;
 
     public String toString() {
         Gson gson = new Gson();
