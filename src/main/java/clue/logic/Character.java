@@ -1,8 +1,6 @@
 package clue.logic;
 
-import javafx.util.Pair;
-
-import java.awt.*;
+import java.awt.Point;
 
 public class Character extends Card {
 

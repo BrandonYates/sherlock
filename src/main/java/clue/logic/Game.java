@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Game extends GameObject {
@@ -46,19 +48,42 @@ public class Game extends GameObject {
     public void makeDeck() {
         _deck = new ArrayList<>();
 
+        List<Card> tempDeck = new ArrayList<>();
         for(Room.Name name: Room.Name.values()) {
             Room roomCard = new Room(name);
-            _deck.add(roomCard);
+            tempDeck.add(roomCard);
         }
+
+        Collections.shuffle(tempDeck);
+        _confidential.add(tempDeck.get(0));
+        tempDeck.remove(0);
+        _deck.addAll(tempDeck);
+
+        tempDeck = new ArrayList<>();
         for(Character.Name name: Character.Name.values()) {
             Character characterCard = new Character(name);
-            _deck.add(characterCard);
+            tempDeck.add(characterCard);
         }
+
+        Collections.shuffle(tempDeck);
+        _confidential.add(tempDeck.get(0));
+        tempDeck.remove(0);
+        _deck.addAll(tempDeck);
+
         for(Weapon.Name name: Weapon.Name.values()) {
             Weapon weaponCard = new Weapon(name);
             _deck.add(weaponCard);
         }
+
+        Collections.shuffle(tempDeck);
+        _confidential.add(tempDeck.get(0));
+        tempDeck.remove(0);
+        _deck.addAll(tempDeck);
+
+
     }
+
+
 
     public void assignCards() {
 
@@ -66,6 +91,7 @@ public class Game extends GameObject {
 
     private List<Player> _players;
     private List<Card> _deck;
+    private List<Card> _confidential;
 
     public String toString() {
         Gson gson = new Gson();

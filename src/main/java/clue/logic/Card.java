@@ -1,5 +1,8 @@
 package clue.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Card extends GameObject {
     protected CardType _cardType = CardType.UNKNOWN;
 
@@ -31,5 +34,16 @@ public class Card extends GameObject {
         sb.append(this._cardType);
         
         return sb.toString();
+    }
+
+    public List<Card> constructDeck(CardType type, List<String> cardNames) {
+
+        List<Card> newCards = new ArrayList<>();
+        cardNames.forEach(cName -> {
+            Card temp = new Card(cName, type);
+            newCards.add(temp);
+        });
+
+        return newCards;
     }
 }
