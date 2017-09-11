@@ -3,10 +3,9 @@ package clue.logic;
 import com.google.gson.Gson;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game extends GameObject {
 
@@ -47,46 +46,31 @@ public class Game extends GameObject {
 
     public void makeDeck() {
         _deck = new ArrayList<>();
+        _confidential = new ArrayList<>();
 
-        List<Card> tempDeck = new ArrayList<>();
-        for(Room.Name name: Room.Name.values()) {
-            Room roomCard = new Room(name);
-            tempDeck.add(roomCard);
-        }
-
-        Collections.shuffle(tempDeck);
-        _confidential.add(tempDeck.get(0));
-        tempDeck.remove(0);
-        _deck.addAll(tempDeck);
-
-        tempDeck = new ArrayList<>();
-        for(Character.Name name: Character.Name.values()) {
-            Character characterCard = new Character(name);
-            tempDeck.add(characterCard);
-        }
-
-        Collections.shuffle(tempDeck);
-        _confidential.add(tempDeck.get(0));
-        tempDeck.remove(0);
-        _deck.addAll(tempDeck);
-
-        for(Weapon.Name name: Weapon.Name.values()) {
-            Weapon weaponCard = new Weapon(name);
-            _deck.add(weaponCard);
-        }
-
-        Collections.shuffle(tempDeck);
-        _confidential.add(tempDeck.get(0));
-        tempDeck.remove(0);
-        _deck.addAll(tempDeck);
-
-
+        //Create
+        chooseCard(Room.class, Room.Name.class);
+        chooseCard(Character.class, Character.Name.class);
+        chooseCard(Weapon.class, Weapon.Name.class);
     }
 
 
+    private <E extends Enum<E>> void chooseCard(Class cardClass, Class<E> enumClass)
+    throws InternalError {
 
-    public void assignCards() {
+        List<String> cardNames = Arrays.stream(enumClass.getEnumConstants())
+                .map(Enum<E>::toString)
+                .collect(Collectors.toList());
 
+        List<Card> tempDeck = Card.constructDeck(cardClass, cardNames);
+
+        if(tempDeck.isEmpty()) {
+            throw new InternalError("Failed to Construct deck for " + cardClass.getName());
+        }
+        Card card = tempDeck.get(0);
+        _confidential.add(card);
+        tempDeck.remove(0);
+        _deck.addAll(tempDeck);
     }
 
     private List<Player> _players;

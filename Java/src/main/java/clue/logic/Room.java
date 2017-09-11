@@ -1,5 +1,8 @@
 package clue.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Room extends Card {
 
     private Name name;
@@ -41,6 +44,7 @@ public class Room extends Card {
             }
             return null;
         }
+
         public String toSring() {
             return label;
         }

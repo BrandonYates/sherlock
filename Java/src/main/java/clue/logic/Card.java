@@ -1,5 +1,7 @@
 package clue.logic;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,13 +38,45 @@ public class Card extends GameObject {
         return sb.toString();
     }
 
-    public List<Card> constructDeck(CardType type, List<String> cardNames) {
+    public static List<Card> constructDeck(CardType type, List<String> cardNames) {
 
         List<Card> newCards = new ArrayList<>();
         cardNames.forEach(cName -> {
             Card temp = new Card(cName, type);
             newCards.add(temp);
         });
+
+        return newCards;
+    }
+
+    public static List<Card> constructDeck(Class<Card> cardClass, List<String> cardNames) {
+
+        List<Card> newCards = new ArrayList<>();
+        Constructor<Card> cardConstructor = null;
+        try {
+            cardConstructor = cardClass.getConstructor(String.class);
+        } catch (NoSuchMethodException e) {
+            System.out.println("Class: " + cardClass.getName() +
+                    " has no constructor method for String.class");
+        }
+
+
+        if(cardConstructor == null) {
+            return newCards;
+        }
+        else {
+            newCards = new ArrayList<>();
+            for(String cName: cardNames) {
+
+                try {
+                    Card temp = cardConstructor.newInstance(cName);
+                    newCards.add(temp);
+                } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                    e.getMessage();
+                    e.getStackTrace();
+                }
+            }
+        }
 
         return newCards;
     }
