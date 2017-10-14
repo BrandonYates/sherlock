@@ -49,7 +49,7 @@ public class Card extends GameObject {
         return newCards;
     }
 
-    public static List<Card> constructDeck(Class<Card> cardClass, List<String> cardNames) {
+    public static List<Card> constructDeck(Class<Card> cardClass, List<String> cardNames, CardType cardType) {
 
         List<Card> newCards = new ArrayList<>();
         Constructor<Card> cardConstructor = null;
@@ -60,7 +60,6 @@ public class Card extends GameObject {
                     " has no constructor method for String.class");
         }
 
-
         if(cardConstructor == null) {
             return newCards;
         }
@@ -70,6 +69,7 @@ public class Card extends GameObject {
 
                 try {
                     Card temp = cardConstructor.newInstance(cName);
+                    temp.setCardType(cardType);
                     newCards.add(temp);
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                     e.getMessage();

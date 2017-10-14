@@ -49,20 +49,20 @@ public class Game extends GameObject {
         _confidential = new ArrayList<>();
 
         //Create
-        chooseCard(Room.class, Room.Name.class);
-        chooseCard(Character.class, Character.Name.class);
-        chooseCard(Weapon.class, Weapon.Name.class);
+        chooseCard(Room.class, Room.Name.class, CardType.ROOM);
+        chooseCard(Character.class, Character.Name.class, CardType.CHARACTER);
+        chooseCard(Weapon.class, Weapon.Name.class, CardType.WEAPON);
     }
 
 
-    private <E extends Enum<E>> void chooseCard(Class cardClass, Class<E> enumClass)
+    private <E extends Enum<E>> void chooseCard(Class cardClass, Class<E> enumClass, CardType cardType)
     throws InternalError {
 
         List<String> cardNames = Arrays.stream(enumClass.getEnumConstants())
                 .map(Enum<E>::toString)
                 .collect(Collectors.toList());
 
-        List<Card> tempDeck = Card.constructDeck(cardClass, cardNames);
+        List<Card> tempDeck = Card.constructDeck(cardClass, cardNames, cardType);
 
         if(tempDeck.isEmpty()) {
             throw new InternalError("Failed to Construct deck for " + cardClass.getName());

@@ -27,8 +27,10 @@ public class GameController {
 
         Game newGame = new Game();
         newGame.makePlayers(players);
+        newGame.makeDeck();
         String label = String.valueOf(System.currentTimeMillis());
-        return newGame(label, players);
+        return serializer.toJson(newGame);
+        //        return newGame(label, players);
     }
 
     @RequestMapping("/newgame")
