@@ -9,6 +9,7 @@ Spring-boot application provides serverside support through a REST interface. Th
 
 Build:
 >cd Java
+
 >mvn clean install
 
 Run: 
@@ -21,7 +22,7 @@ This will return the stringified version of a Game object. The object may be que
 # Running the Code In Docker
 
 First start docker and then build the docker image from the repository by issuing the following command
->docker build https://github.com/BrandonYates/sherlock/tree/merged
+>docker build https://github.com/BrandonYates/sherlock.git#merged
 
 Then check your docker image id with the following commands
 >docker images
