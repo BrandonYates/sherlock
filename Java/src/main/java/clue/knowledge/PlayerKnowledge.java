@@ -1,9 +1,14 @@
-package clue.logic;
+package clue.knowledge;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+
+import clue.logic.Card;
+import clue.logic.Character;
+import clue.logic.Room;
+import clue.logic.Weapon;
 
 public class PlayerKnowledge {
 
