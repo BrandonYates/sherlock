@@ -16,16 +16,16 @@ public class PlayerKnowledge {
         HAS, HASNOT, UNKNOWN
     }
 
-    List<Character> _characters;
-    List<Weapon> _weapons;
-    List<Room> _rooms;
+    private List<Character> _characters;
+    private List<Weapon> _weapons;
+    private List<Room> _rooms;
 
     //maps the name of a card to what an external player
     //could know about their knowledge
     //example: Player 1 was handed the Rope card as evidence
     //against an accusation. Thus in the Rope card is mapped to HAS 
     //Because Player 1 knows that Player 2 HAS that card
-    Map<String, Info> _known; 
+    private Map<String, Info> _known;
 
     public PlayerKnowledge(List<Card> cards) {
 

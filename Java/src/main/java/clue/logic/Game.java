@@ -1,5 +1,6 @@
 package clue.logic;
 
+import clue.knowledge.SuggestionHistory;
 import com.google.gson.Gson;
 
 import java.awt.*;
@@ -10,15 +11,16 @@ import java.util.stream.Collectors;
 public class Game extends GameObject {
 
     public Game() {
-        super();
+        super(null, null);
     }
 
     public Game(String aLabel) {
-        super(aLabel);
+        super(null, aLabel);
     }
 
-    public Game(String id, String label) {
-        super(id, label);
+    public Game(String aId, String aLabel) {
+        super(aId, aLabel);
+        _suggestionHistory = new SuggestionHistory(aId);
     }
 
     public void makePlayers(String[] players) {
@@ -54,7 +56,6 @@ public class Game extends GameObject {
         chooseCard(Weapon.class, Weapon.Name.class, CardType.WEAPON);
     }
 
-
     private <E extends Enum<E>> void chooseCard(Class cardClass, Class<E> enumClass, CardType cardType)
     throws InternalError {
 
@@ -76,6 +77,7 @@ public class Game extends GameObject {
     private List<Player> _players;
     private List<Card> _deck;
     private List<Card> _confidential;
+    private SuggestionHistory _suggestionHistory;
 
     public String toString() {
         Gson gson = new Gson();
