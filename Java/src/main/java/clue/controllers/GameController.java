@@ -25,12 +25,12 @@ public class GameController {
     @RequestMapping("/newgame/simple")
     public String newGame(@RequestParam(value="players")String[] players) {
 
-        Game newGame = new Game();
+        String label = String.valueOf(System.currentTimeMillis());
+
+        Game newGame = new Game(label);
         newGame.makePlayers(players);
         newGame.makeDeck();
-        String label = String.valueOf(System.currentTimeMillis());
         return serializer.toJson(newGame);
-        //        return newGame(label, players);
     }
 
     @RequestMapping("/newgame")
