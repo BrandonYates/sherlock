@@ -7,9 +7,25 @@ Spring-boot application provides serverside support through a REST interface. Th
 # Java Server #
 ###############
 
-Build: mvn clean install
-Run: cd sherlock/Java; ./mvnw spring-boot:run
+Build:
+>cd Java
+
+>mvn clean install
+
+Run: 
+>./mvnw spring-boot:run
 
 Rest Call example:
 Http Request: http://localhost:8080/newgame/simple?players=Brandon
 This will return the stringified version of a Game object. The object may be queried and edited then sent back. In the future I hope the provide serializer/deserializer support.
+
+# Running the Code In Docker
+
+First start docker and then build the docker image from the repository by issuing the following command
+>docker build https://github.com/BrandonYates/sherlock.git#merged
+
+Then check your docker image id with the following commands
+>docker images
+
+Finally run the image with the command
+>docker run -p 8080:8080 [you_image_id]
