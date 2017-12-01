@@ -6,14 +6,14 @@ import java.util.List;
 public class SuggestionHistory {
 
     private List<Suggestion> history;
-    private int gameId;
+    private String gameId;
 
-    public SuggestionHistory(int aGameId) {
+    public SuggestionHistory(String aGameId) {
         gameId = aGameId;
         history = new ArrayList<>();
     }
 
-    public int getGameId() {
+    public String getGameId() {
         return gameId;
     }
 

@@ -1,5 +1,7 @@
 package clue.logic;
 
+import clue.knowledge.PlayerKnowledge;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
