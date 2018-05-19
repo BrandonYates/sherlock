@@ -4,8 +4,8 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="clue.logic">
-    <class name="GameObject" table="game_object">
-        <id name="id" column="GAME_OBJECT_ID"/>
+    <class name="Game" table="game">
+        <id name="id" column="ID"/>
         <property name="label" type="string" column="LABEL"/>
     </class>
 </hibernate-mapping>

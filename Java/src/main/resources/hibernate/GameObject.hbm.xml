@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="clue.logic">
+    <class name="GameObject" table="game_object">
+        <id name="id" column="GAME_OBJECT_ID"/>
+        <property name="label" type="string" column="LABEL"/>
+
+        <many-to-one name="deck">
+            <column name="id" unique-key="true" />
+        </many-to-one>
+
+        <many-to-one name="confidential">
+            <column name="id" unique-key="true" />
+        </many-to-one>
+
+        <many-to-one name="players">
+            <column name="id" unique-key="true" />
+        </many-to-one>
+
+        <property name="suggestionHistory";
+
+    </class>
+</hibernate-mapping>

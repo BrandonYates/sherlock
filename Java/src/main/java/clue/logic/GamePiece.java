@@ -13,14 +13,14 @@ public class GamePiece extends GameObject {
 
   public GamePiece(String label, int x, int y) {
     super(label);
-    _label = label;
+    this.label = label;
     _x = x;
     _y = y;
   }
 
   public GamePiece(String id, String label, int x, int y) {
-    _id = id;
-    _label = label;
+    this.id = id;
+    this.label = label;
     _x = x;
     _y = y;
   }   

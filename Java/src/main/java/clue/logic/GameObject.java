@@ -4,34 +4,42 @@ import java.util.UUID;
 
 public class GameObject {
 
-  protected String _id;
-  protected String _label;
+  protected String id;
+  protected String label;
 
   public GameObject() {
-    _id = UUID.randomUUID().toString();
-    _label = "NOT SET";
+    id = UUID.randomUUID().toString();
+    label = "NOT SET";
   }   
 
   public GameObject(String aLabel) {
-    _id = UUID.randomUUID().toString();
-    _label = aLabel;
+    id = UUID.randomUUID().toString();
+    label = aLabel;
   }
 
   public GameObject(String id, String label) {
-    _id = id;
-    _label = label;
+    this.id = id;
+    this.label = label;
   }
 
-  public String getID() {
-    return _id; 
+  public String getId() {
+    return id;
   }
 
   public String getLabel() {
-    return _label;
+    return label;
   }
-  
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setLabel(String label) {
+    this.label = label;
+  }
+
   public String toString() {
 
-    return _id + " | " + _label;
+    return id + " | " + label;
   }
 }

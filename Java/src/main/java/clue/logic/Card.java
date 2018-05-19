@@ -31,9 +31,9 @@ public class Card extends GameObject {
         StringBuilder sb = new StringBuilder();
 
         sb.append("id: ");
-        sb.append(this._id);
+        sb.append(this.id);
         sb.append(" | ");
-        sb.append(this._label);
+        sb.append(this.label);
         sb.append(" | ");
         sb.append(this._cardType);
         

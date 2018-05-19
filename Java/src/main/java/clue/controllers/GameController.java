@@ -4,7 +4,10 @@ import clue.logic.Game;
 import clue.logic.GameObject;
 
 import com.google.gson.Gson;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +45,23 @@ public class GameController {
         Game newGame = new Game(label);
         newGame.makePlayers(players);
         newGame.makeDeck();
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.save(newGame);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
         return serializer.toJson(newGame);
     }
 
@@ -52,13 +72,45 @@ public class GameController {
         Game newGame = new Game(label);
         newGame.makePlayers(players);
 
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.save(newGame);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
         return serializer.toJson(newGame);
     }
 
     @RequestMapping("/getObject")
     public String getObject(@RequestParam(value="id")String id) {
 
-        GameObject tObject = new GameObject("");
+        GameObject tObject = null;
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            tObject = (GameObject)session.get(GameObject.class, id);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
         return serializer.toJson(tObject);
     }

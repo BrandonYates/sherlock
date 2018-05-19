@@ -22,12 +22,12 @@ public class Game extends GameObject {
 
     public Game(String aId, String aLabel) {
         super(aId, aLabel);
-        _suggestionHistory = new SuggestionHistory(aId);
+        suggestionHistory = new SuggestionHistory(aId);
     }
 
     public void makePlayers(String[] players) {
 
-        _players = new ArrayList<>();
+        this.players = new ArrayList<>();
         List<CardName> names = CardName.getCharacterNames();
         Player tempPlayer;
         GamePiece tempPiece;
@@ -44,13 +44,13 @@ public class Game extends GameObject {
            tempPiece =
                     new GamePiece(String.valueOf(i), characterName, x, y);
            tempPlayer.setPiece(tempPiece);
-            _players.add(tempPlayer);
+            this.players.add(tempPlayer);
         }
     }
 
     public void makeDeck() {
         _deck = new ArrayList<>();
-        _confidential = new ArrayList<>();
+        confidential = new ArrayList<>();
 
         //Create
         chooseCard(Room.class, Room.Name.class, CardType.ROOM);
@@ -71,15 +71,47 @@ public class Game extends GameObject {
             throw new InternalError("Failed to Construct deck for " + cardClass.getName());
         }
         Card card = tempDeck.get(0);
-        _confidential.add(card);
+        confidential.add(card);
         tempDeck.remove(0);
         _deck.addAll(tempDeck);
     }
 
-    private List<Player> _players;
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public List<Card> get_deck() {
+        return _deck;
+    }
+
+    public void set_deck(List<Card> _deck) {
+        this._deck = _deck;
+    }
+
+    public List<Card> getConfidential() {
+        return confidential;
+    }
+
+    public void setConfidential(List<Card> confidential) {
+        this.confidential = confidential;
+    }
+
+    public SuggestionHistory getSuggestionHistory() {
+        return suggestionHistory;
+    }
+
+    public void setSuggestionHistory(SuggestionHistory suggestionHistory) {
+        this.suggestionHistory = suggestionHistory;
+    }
+
     private List<Card> _deck;
-    private List<Card> _confidential;
-    private SuggestionHistory _suggestionHistory;
+    private List<Card> confidential;
+    private List<Player> players;
+    private SuggestionHistory suggestionHistory;
 
     public String toString() {
         Gson gson = new Gson();

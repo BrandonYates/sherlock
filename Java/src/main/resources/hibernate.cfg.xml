@@ -27,7 +27,7 @@
         </property>
 
         <!-- List of XML mapping files -->
-        <mapping resource = "GameObject.hbm.xml"/>
+        <mapping resource = "hibernate/GameObject.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
