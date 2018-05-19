@@ -1,7 +1,9 @@
 package clue.logic;
 
+import javax.persistence.Entity;
 import java.awt.Point;
 
+@Entity
 public class Character extends Card {
 
     private Name name;

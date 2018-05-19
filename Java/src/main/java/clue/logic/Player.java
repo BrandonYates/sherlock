@@ -2,10 +2,12 @@ package clue.logic;
 
 import clue.knowledge.PlayerKnowledge;
 
+import javax.persistence.Entity;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
+@Entity
 public class Player extends GameObject {
 
     private GamePiece _piece;

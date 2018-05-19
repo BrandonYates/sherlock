@@ -1,7 +1,7 @@
 *.class
 *.pyc
 *.idea/*
-target/*
+**/target/*
 *.iml
 Java/target/*
 Java/.idea/*

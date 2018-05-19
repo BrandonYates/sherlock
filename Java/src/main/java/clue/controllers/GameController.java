@@ -4,6 +4,8 @@ import clue.logic.Game;
 import clue.logic.GameObject;
 
 import com.google.gson.Gson;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,16 @@ public class GameController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
     private static final Gson serializer = new Gson();
+    private static SessionFactory factory;
+
+    public GameController() {
+        try {
+            factory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
 
     @RequestMapping("/gameobject")
     public GameObject gameObject(@RequestParam(value="label", defaultValue = "default") String label) {
@@ -41,5 +53,13 @@ public class GameController {
         newGame.makePlayers(players);
 
         return serializer.toJson(newGame);
+    }
+
+    @RequestMapping("/getObject")
+    public String getObject(@RequestParam(value="id")String id) {
+
+        GameObject tObject = new GameObject("");
+
+        return serializer.toJson(tObject);
     }
 }

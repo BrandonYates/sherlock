@@ -3,11 +3,13 @@ package clue.logic;
 import clue.knowledge.SuggestionHistory;
 import com.google.gson.Gson;
 
+import javax.persistence.Entity;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Entity
 public class Game extends GameObject {
 
     public Game() {

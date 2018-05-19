@@ -1,5 +1,8 @@
 package clue.logic;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Weapon extends Card {
 
     private Name name;

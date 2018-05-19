@@ -1,10 +1,12 @@
 package clue.logic;
 
+import javax.persistence.Entity;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Card extends GameObject {
     protected CardType _cardType = CardType.UNKNOWN;
 
