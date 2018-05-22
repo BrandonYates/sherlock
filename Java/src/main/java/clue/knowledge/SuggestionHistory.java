@@ -1,9 +1,6 @@
 package clue.knowledge;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,8 @@ public class SuggestionHistory {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
+
+  @ElementCollection
   private List<Suggestion> history;
 
   public SuggestionHistory() {

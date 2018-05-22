@@ -10,10 +10,7 @@ import clue.logic.Character;
 import clue.logic.Room;
 import clue.logic.Weapon;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class PlayerKnowledge {
@@ -24,8 +21,11 @@ public class PlayerKnowledge {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @ElementCollection
     private List<Character> characters;
+    @ElementCollection
     private List<Weapon> weapons;
+    @ElementCollection
     private List<Room> rooms;
 
     //maps the name of a card to what an external player
@@ -33,6 +33,7 @@ public class PlayerKnowledge {
     //example: Player 1 was handed the Rope card as evidence
     //against an accusation. Thus in the Rope card is mapped to HAS 
     //Because Player 1 knows that Player 2 HAS that card
+    @ElementCollection
     private Map<String, Info> known;
 
     public PlayerKnowledge(List<Card> cards) {

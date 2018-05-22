@@ -33,6 +33,8 @@
         <mapping class="clue.knowledge.Suggestion"/>
         <mapping class="clue.knowledge.SuggestionHistory"/>
         <mapping class="clue.logic.Card"/>
+        <mapping class="clue.logic.CardName"/>
+        <mapping class="clue.logic.CardType"/>
         <mapping class="clue.logic.Character" />
         <mapping class="clue.logic.GameBoard"/>
         <mapping class="clue.logic.GameObject"/>

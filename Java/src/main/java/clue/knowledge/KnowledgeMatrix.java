@@ -22,24 +22,24 @@ public class KnowledgeMatrix {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
   @OneToOne
-  Player ownPlayer;
-  @OneToMany
-  List<Player> players;
-  @OneToMany
-  Map<String, PlayerKnowledge> matrix;
-  @OneToMany
-  List<CardName> possibleCharacters;
-  @OneToMany
-  List<CardName> possibleWeapons;
-  @OneToMany
-  List<CardName> possibleRooms;
+  private Player ownPlayer;
 
+  @ElementCollection
+  private List<Player> players;
+  @ElementCollection
+  private Map<String, PlayerKnowledge> matrix;
+  @ElementCollection
+  private List<CardName> possibleCharacters;
+  @ElementCollection
+  private List<CardName> possibleWeapons;
+  @ElementCollection
+  private List<CardName> possibleRooms;
   @OneToOne
-  Character solutionCharacter = null;
+  private Character solutionCharacter = null;
   @OneToOne
-  Weapon solutionWeapon = null;
+  private Weapon solutionWeapon = null;
   @OneToOne
-  Room solutionRoom = null;
+  private Room solutionRoom = null;
 
   //get the players from the game and set up their knowledge
   //at the beginning of the game we don't know anything about
@@ -103,5 +103,85 @@ public class KnowledgeMatrix {
     //         if()
     //     }
     // }
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Player getOwnPlayer() {
+    return ownPlayer;
+  }
+
+  public void setOwnPlayer(Player ownPlayer) {
+    this.ownPlayer = ownPlayer;
+  }
+
+  public List<Player> getPlayers() {
+    return players;
+  }
+
+  public void setPlayers(List<Player> players) {
+    this.players = players;
+  }
+
+  public Map<String, PlayerKnowledge> getMatrix() {
+    return matrix;
+  }
+
+  public void setMatrix(Map<String, PlayerKnowledge> matrix) {
+    this.matrix = matrix;
+  }
+
+  public List<CardName> getPossibleCharacters() {
+    return possibleCharacters;
+  }
+
+  public void setPossibleCharacters(List<CardName> possibleCharacters) {
+    this.possibleCharacters = possibleCharacters;
+  }
+
+  public List<CardName> getPossibleWeapons() {
+    return possibleWeapons;
+  }
+
+  public void setPossibleWeapons(List<CardName> possibleWeapons) {
+    this.possibleWeapons = possibleWeapons;
+  }
+
+  public List<CardName> getPossibleRooms() {
+    return possibleRooms;
+  }
+
+  public void setPossibleRooms(List<CardName> possibleRooms) {
+    this.possibleRooms = possibleRooms;
+  }
+
+  public Character getSolutionCharacter() {
+    return solutionCharacter;
+  }
+
+  public void setSolutionCharacter(Character solutionCharacter) {
+    this.solutionCharacter = solutionCharacter;
+  }
+
+  public Weapon getSolutionWeapon() {
+    return solutionWeapon;
+  }
+
+  public void setSolutionWeapon(Weapon solutionWeapon) {
+    this.solutionWeapon = solutionWeapon;
+  }
+
+  public Room getSolutionRoom() {
+    return solutionRoom;
+  }
+
+  public void setSolutionRoom(Room solutionRoom) {
+    this.solutionRoom = solutionRoom;
   }
 }
