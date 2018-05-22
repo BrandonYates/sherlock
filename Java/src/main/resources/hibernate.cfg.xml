@@ -27,7 +27,20 @@
         </property>
 
         <!-- List of XML mapping files -->
-        <mapping resource = "hibernate/GameObject.hbm.xml"/>
+        <!--<mapping resource = "hibernate/GameObject.hbm.xml"/>-->
+        <mapping class="clue.knowledge.KnowledgeMatrix"/>
+        <mapping class="clue.knowledge.PlayerKnowledge"/>
+        <mapping class="clue.knowledge.Suggestion"/>
+        <mapping class="clue.knowledge.SuggestionHistory"/>
+        <mapping class="clue.logic.Card"/>
+        <mapping class="clue.logic.Character" />
+        <mapping class="clue.logic.GameBoard"/>
+        <mapping class="clue.logic.GameObject"/>
+        <mapping class="clue.logic.GamePiece"/>
+        <mapping class="clue.logic.GameSquare"/>
+        <mapping class="clue.logic.Player"/>
+        <mapping class="clue.logic.Room"/>
+        <mapping class="clue.logic.Weapon"/>
 
     </session-factory>
 </hibernate-configuration>

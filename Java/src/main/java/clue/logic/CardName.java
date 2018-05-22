@@ -93,14 +93,14 @@ public enum CardName {
         return false;
     }
     public static boolean isWeapon(CardName aName) {
-        
+
         List<CardName> names = getWeaponNames();
 
         for(CardName name: names) {
             if(name.toString().equals(aName)) {
                 return true;
             }
-        }        
+        }
         return false;
     }
     public static boolean isRoom(CardName aName) {

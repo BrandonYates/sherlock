@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 public class Card extends GameObject {
+
     protected CardType _cardType = CardType.UNKNOWN;
 
     public Card(String label) {

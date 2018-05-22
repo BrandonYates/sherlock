@@ -1,46 +1,51 @@
 package clue.logic;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
 /**
  * 
  */
-public class GameSquare {
+@Entity
+public class GameSquare extends GameObject {
 
-    boolean _occupied = false;
-    boolean _valid = false;
-    GamePiece _piece = null;
+    boolean occupied = false;
+    boolean valid = false;
+    @OneToOne
+    GamePiece piece = null;
 
    /** 
     * Constructor
     */
     public GameSquare(boolean occupied, boolean valid, GamePiece piece) {
 
-        _occupied = occupied;
-        _valid = valid;
-        _piece = piece;
+        this.occupied = occupied;
+        this.valid = valid;
+        this.piece = piece;
     }
 
     public void setValid() {
-        _valid = true;
+        valid = true;
     }
 
     public GamePiece setPiece(GamePiece piece) {
         
-        if(!this._occupied && piece != null) {
+        if(!this.occupied && piece != null) {
 
         }
         else if (piece == null) {
-            _occupied = false;
-            _piece = piece;
+            occupied = false;
+            this.piece = piece;
         }
 
-        return _piece;
+        return this.piece;
     }
 
     public boolean isValid() {
-        return _valid;
+        return valid;
     }
     
     public boolean isOccupied() {
-        return _occupied;
+        return occupied;
     }
 }

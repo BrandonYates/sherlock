@@ -3,7 +3,7 @@ package clue.logic;
 import clue.knowledge.SuggestionHistory;
 import com.google.gson.Gson;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -22,7 +22,7 @@ public class Game extends GameObject {
 
     public Game(String aId, String aLabel) {
         super(aId, aLabel);
-        suggestionHistory = new SuggestionHistory(aId);
+        suggestionHistory = new SuggestionHistory();
     }
 
     public void makePlayers(String[] players) {
@@ -41,15 +41,15 @@ public class Game extends GameObject {
             int x = (int)startPos.getX();
             int y = (int)startPos.getY();
 
-           tempPiece =
-                    new GamePiece(String.valueOf(i), characterName, x, y);
-           tempPlayer.setPiece(tempPiece);
+            tempPiece =
+                new GamePiece(String.valueOf(i), characterName, x, y);
+            tempPlayer.setPiece(tempPiece);
             this.players.add(tempPlayer);
         }
     }
 
     public void makeDeck() {
-        _deck = new ArrayList<>();
+        deck = new ArrayList<>();
         confidential = new ArrayList<>();
 
         //Create
@@ -59,11 +59,11 @@ public class Game extends GameObject {
     }
 
     private <E extends Enum<E>> void chooseCard(Class cardClass, Class<E> enumClass, CardType cardType)
-    throws InternalError {
+        throws InternalError {
 
         List<String> cardNames = Arrays.stream(enumClass.getEnumConstants())
-                .map(Enum<E>::toString)
-                .collect(Collectors.toList());
+            .map(Enum<E>::toString)
+            .collect(Collectors.toList());
 
         List<Card> tempDeck = Card.constructDeck(cardClass, cardNames, cardType);
 
@@ -73,7 +73,7 @@ public class Game extends GameObject {
         Card card = tempDeck.get(0);
         confidential.add(card);
         tempDeck.remove(0);
-        _deck.addAll(tempDeck);
+        deck.addAll(tempDeck);
     }
 
     public List<Player> getPlayers() {
@@ -84,12 +84,12 @@ public class Game extends GameObject {
         this.players = players;
     }
 
-    public List<Card> get_deck() {
-        return _deck;
+    public List<Card> getDeck() {
+        return deck;
     }
 
-    public void set_deck(List<Card> _deck) {
-        this._deck = _deck;
+    public void setDeck(List<Card> deck) {
+        this.deck = deck;
     }
 
     public List<Card> getConfidential() {
@@ -108,9 +108,18 @@ public class Game extends GameObject {
         this.suggestionHistory = suggestionHistory;
     }
 
-    private List<Card> _deck;
+    @OneToMany
+    @JoinColumn(name = "CARD_ID")
+    private List<Card> deck;
+    @OneToMany
+    @JoinColumn(name = "CARD_ID")
     private List<Card> confidential;
+    @OneToMany
+    @JoinColumn(name = "PLAYER_ID")
     private List<Player> players;
+
+    @OneToOne
+    @JoinColumn(name = "SUGGESTION_HISTORY_ID")
     private SuggestionHistory suggestionHistory;
 
     public String toString() {
