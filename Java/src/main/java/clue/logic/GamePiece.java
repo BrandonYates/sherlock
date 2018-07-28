@@ -25,7 +25,7 @@ public class GamePiece extends GameObject {
     _y = y;
   }
 
-  public GamePiece(String id, String label, int x, int y) {
+  public GamePiece(int id, String label, int x, int y) {
     this.id = id;
     this.label = label;
     _x = x;

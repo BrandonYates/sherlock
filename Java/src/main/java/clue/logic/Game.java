@@ -9,18 +9,20 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 public class Game extends GameObject {
 
     public Game() {
-        super(null, null);
+        super();
     }
 
     public Game(String aLabel) {
-        super(null, aLabel);
+        super(aLabel);
     }
 
-    public Game(String aId, String aLabel) {
+    public Game(int aId, String aLabel) {
         super(aId, aLabel);
         suggestionHistory = new SuggestionHistory();
     }
@@ -42,7 +44,7 @@ public class Game extends GameObject {
             int y = (int)startPos.getY();
 
             tempPiece =
-                new GamePiece(String.valueOf(i), characterName, x, y);
+                new GamePiece(i, characterName, x, y);
             tempPlayer.setPiece(tempPiece);
             this.players.add(tempPlayer);
         }
@@ -108,14 +110,14 @@ public class Game extends GameObject {
         this.suggestionHistory = suggestionHistory;
     }
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Card> deck;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Card> confidential;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Player> players;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private SuggestionHistory suggestionHistory;
 
     public String toString() {

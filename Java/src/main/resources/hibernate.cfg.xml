@@ -26,6 +26,7 @@
 
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.identity">create</property>
 
         <!-- List of XML mapping files -->
         <!--<mapping resource = "hibernate/GameObject.hbm.xml"/>-->
@@ -37,6 +38,7 @@
         <mapping class="clue.logic.CardName"/>
         <mapping class="clue.logic.CardType"/>
         <mapping class="clue.logic.Character" />
+        <mapping class="clue.logic.Game"/>
         <mapping class="clue.logic.GameBoard"/>
         <mapping class="clue.logic.GameObject"/>
         <mapping class="clue.logic.GamePiece"/>

@@ -3,48 +3,46 @@ package clue.logic;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
     name = "OBJECT_TYPE",
     discriminatorType = DiscriminatorType.STRING)
 public class GameObject {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    protected String id;
-    @Column(insertable = false, updatable = false)
-    protected String label;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id", updatable = false, nullable = false)
+  protected long id;
+  @Column(insertable = false, updatable = false)
+  protected String label;
 
-    public GameObject() {
-        label = "NOT SET";
-    }
+  public GameObject() {
+    label = "NOT SET";
+  }
 
-    public GameObject(String aLabel) {
-        label = aLabel;
-    }
+  public GameObject(String aLabel) {
+    label = aLabel;
+  }
 
-    public GameObject(String id, String label) {
-        this.id = id;
-        this.label = label;
-    }
+  public GameObject(long id, String label) {
+    this.id = id;
+    this.label = label;
+  }
 
-    public String getId() {
-        return id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public String getLabel() {
-        return label;
-    }
+  public String getLabel() {
+    return label;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public void setLabel(String label) {
+    this.label = label;
+  }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
+  public String toString() {
 
-    public String toString() {
-
-        return id + " | " + label;
-    }
+    return id + " | " + label;
+  }
 }

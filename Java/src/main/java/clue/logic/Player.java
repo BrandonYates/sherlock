@@ -2,29 +2,46 @@ package clue.logic;
 
 import clue.knowledge.PlayerKnowledge;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
 @Entity
-public class Player extends GameObject {
+public class Player {
 
-  @OneToOne
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id", updatable = false, nullable = false)
+  private long id;
+  @Column(insertable = false, updatable = false)
+  private String label;
+
+  @OneToOne(cascade = {CascadeType.ALL})
   private GamePiece piece;
-  @OneToMany
+  @OneToMany(cascade = {CascadeType.ALL})
   List<Card> cards;
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   PlayerKnowledge knowledge;
 
   public Player() {
-    super();
+    label = "Not Set";
   }
 
-  public Player(String label) {
-    super(label);
+  public Player(String aLabel) {
+    this.label = aLabel;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public String getLabel() {
+    return label;
+  }
+
+  public void setLabel(String aLabel) {
+    label = aLabel;
   }
 
   public void setPiece(GamePiece newPiece) {
