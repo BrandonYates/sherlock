@@ -1,10 +1,8 @@
 package clue.logic;
 
-import javax.persistence.Embeddable;
 import java.util.List;
 import java.util.ArrayList;
 
-@Embeddable
 public enum CardName {
 
   GREEN("Mr. Green"),
@@ -31,6 +29,10 @@ public enum CardName {
   INVALID("Invalid Name");
 
   private String _humanReadable;
+
+  CardName() {
+    _humanReadable = "Invalid Name";
+  }
 
   CardName(String readable) {
     _humanReadable = readable;

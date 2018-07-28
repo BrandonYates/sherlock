@@ -19,6 +19,10 @@ public class Player extends GameObject {
   @OneToOne
   PlayerKnowledge knowledge;
 
+  public Player() {
+    super();
+  }
+
   public Player(String label) {
     super(label);
   }

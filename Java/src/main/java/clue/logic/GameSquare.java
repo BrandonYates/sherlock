@@ -14,6 +14,9 @@ public class GameSquare extends GameObject {
     @OneToOne
     GamePiece piece = null;
 
+    public GameSquare() {
+      super();
+    }
    /** 
     * Constructor
     */

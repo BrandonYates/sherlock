@@ -7,6 +7,10 @@ public class Weapon extends Card {
 
     private Name name;
 
+    public Weapon() {
+        super();
+    }
+
     public Weapon(String weapon) {
         super(weapon);
 

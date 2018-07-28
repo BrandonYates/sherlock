@@ -19,10 +19,10 @@ public class GameBoard extends GameObject {
    * is calculated by the following equation.
    * index = rowNumber * maxWidth + columnNumber;
    */
-  @OneToMany @JoinColumn(name = "GAME_OBJECT_ID")
+  @OneToMany
   List<GameSquare> board;
 
-  @OneToMany @JoinColumn(name = "GAME_OBJECT_ID")
+  @OneToMany
   List<GamePiece> pieces;
 
   /**

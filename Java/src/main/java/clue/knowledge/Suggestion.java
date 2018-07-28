@@ -22,6 +22,10 @@ public class Suggestion {
   @OneToOne
   private Character character;
 
+  public Suggestion() {
+
+  }
+
   public Suggestion(Player aPlayer, Room aRoom, Weapon aWeapon, Character aCharacter) {
     Player = aPlayer;
     room = aRoom;

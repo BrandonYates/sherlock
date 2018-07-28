@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import clue.logic.Card;
+import clue.logic.*;
 import clue.logic.Character;
-import clue.logic.Room;
-import clue.logic.Weapon;
 
 import javax.persistence.*;
 
@@ -35,6 +33,13 @@ public class PlayerKnowledge {
     //Because Player 1 knows that Player 2 HAS that card
     @ElementCollection
     private Map<String, Info> known;
+
+    public PlayerKnowledge() {
+        characters = new ArrayList<>();
+        weapons = new ArrayList<>();
+        rooms = new ArrayList<>();
+        known = new HashMap<>();
+    }
 
     public PlayerKnowledge(List<Card> cards) {
 

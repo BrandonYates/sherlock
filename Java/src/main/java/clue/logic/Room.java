@@ -9,6 +9,10 @@ public class Room extends Card {
 
     private Name name;
 
+    public Room() {
+        super();
+    }
+
     public Room(String label) {
 
         super(label);

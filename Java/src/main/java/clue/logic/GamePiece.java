@@ -8,6 +8,10 @@ public class GamePiece extends GameObject {
   private int _x;
   private int _y;
 
+  public GamePiece() {
+    super();
+  }
+
   public GamePiece(int x, int y) {
     super();
     _x = x;

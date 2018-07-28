@@ -41,6 +41,10 @@ public class KnowledgeMatrix {
   @OneToOne
   private Room solutionRoom = null;
 
+  public KnowledgeMatrix() {
+    matrix = new HashMap<>();
+  }
+
   //get the players from the game and set up their knowledge
   //at the beginning of the game we don't know anything about
   //all player knowledge, we will fill it in as the game progresses

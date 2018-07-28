@@ -1,8 +1,5 @@
 package clue.logic;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
 public enum CardType {
   ROOM("ROOM", 0),
   WEAPON("WEAPON", 1),
@@ -11,6 +8,11 @@ public enum CardType {
 
   private final String label;
   private final int index;
+
+  CardType() {
+    label = "NOT SET";
+    index = -1;
+  }
 
   CardType(String str, int i) {
     label = str;

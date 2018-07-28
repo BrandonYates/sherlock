@@ -5,14 +5,12 @@
     <session-factory>
 
         <property name = "hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect
+            org.hibernate.dialect.MySQL5Dialect
         </property>
 
         <property name = "hibernate.connection.driver_class">
             com.mysql.jdbc.Driver
         </property>
-
-        <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
             jdbc:mysql://localhost/sherlock
@@ -25,6 +23,9 @@
         <property name = "hibernate.connection.password">
             ThePassword
         </property>
+
+        <property name="show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <!-- List of XML mapping files -->
         <!--<mapping resource = "hibernate/GameObject.hbm.xml"/>-->

@@ -11,6 +11,7 @@ public class GameObject {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     protected String id;
+    @Column(insertable = false, updatable = false)
     protected String label;
 
     public GameObject() {

@@ -8,6 +8,10 @@ public class Character extends Card {
 
     private Name name;
 
+    public Character() {
+        super();
+    }
+
     public Character(String character) {
         
         super(character);

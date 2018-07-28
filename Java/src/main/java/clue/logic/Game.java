@@ -109,17 +109,13 @@ public class Game extends GameObject {
     }
 
     @OneToMany
-    @JoinColumn(name = "CARD_ID")
     private List<Card> deck;
     @OneToMany
-    @JoinColumn(name = "CARD_ID")
     private List<Card> confidential;
     @OneToMany
-    @JoinColumn(name = "PLAYER_ID")
     private List<Player> players;
 
     @OneToOne
-    @JoinColumn(name = "SUGGESTION_HISTORY_ID")
     private SuggestionHistory suggestionHistory;
 
     public String toString() {
