@@ -17,7 +17,7 @@ Run:
 
 Rest Call example:
 Http Request: http://localhost:8080/newgame/simple?players=Brandon
-This will return the stringified version of a Game object. The object may be queried and edited then sent back. In the future I hope the provide serializer/deserializer support.
+This will return the stringified version of a Game object. The object may be queried and edited then sent back. In the future I hope to provide serializer/deserializer support.
 
 # Running the Code In Docker
 
