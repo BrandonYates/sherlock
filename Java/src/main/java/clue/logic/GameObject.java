@@ -2,15 +2,16 @@ package clue.logic;
 
 import javax.persistence.*;
 
-@Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-    name = "OBJECT_TYPE",
-    discriminatorType = DiscriminatorType.STRING)
+//@Entity
+////@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(
+//    name = "OBJECT_TYPE",
+//    discriminatorType = DiscriminatorType.STRING)
+@MappedSuperclass
 public class GameObject {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", updatable = false, nullable = false)
   protected long id;
   @Column(insertable = false, updatable = false)

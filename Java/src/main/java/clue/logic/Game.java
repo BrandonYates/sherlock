@@ -9,8 +9,6 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static javax.persistence.CascadeType.*;
-
 @Entity
 public class Game extends GameObject {
 
@@ -110,11 +108,13 @@ public class Game extends GameObject {
         this.suggestionHistory = suggestionHistory;
     }
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="id", cascade = {CascadeType.ALL})
     private List<Card> deck;
     @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name="configdential_id")
     private List<Card> confidential;
     @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name="players_id")
     private List<Player> players;
 
     @OneToOne(cascade = {CascadeType.ALL})
