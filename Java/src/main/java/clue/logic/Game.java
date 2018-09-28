@@ -2,6 +2,8 @@ package clue.logic;
 
 import clue.knowledge.SuggestionHistory;
 import com.google.gson.Gson;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -108,13 +110,31 @@ public class Game extends GameObject {
         this.suggestionHistory = suggestionHistory;
     }
 
-    @OneToMany(mappedBy="id", cascade = {CascadeType.ALL})
+    @OneToMany(targetEntity=Card.class, fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(
+        name="GameDeck",
+        joinColumns = @JoinColumn( name="game_id"),
+        inverseJoinColumns = @JoinColumn( name="card_id")
+    )
     private List<Card> deck;
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name="configdential_id")
+
+    @OneToMany(targetEntity=Card.class, fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(
+        name="GameConfidential",
+        joinColumns = @JoinColumn( name="game_id"),
+        inverseJoinColumns = @JoinColumn( name="card_id")
+    )
     private List<Card> confidential;
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name="players_id")
+
+    @OneToMany(targetEntity=Player.class, fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(
+        name="GamePlayers",
+        joinColumns = @JoinColumn( name="game_id"),
+        inverseJoinColumns = @JoinColumn( name="player_id")
+    )
     private List<Player> players;
 
     @OneToOne(cascade = {CascadeType.ALL})
