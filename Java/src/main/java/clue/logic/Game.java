@@ -5,9 +5,17 @@ import com.google.gson.Gson;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -110,7 +118,7 @@ public class Game extends GameObject {
         this.suggestionHistory = suggestionHistory;
     }
 
-    @OneToMany(targetEntity=Card.class, fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(targetEntity=Card.class, fetch= FetchType.EAGER, cascade = {CascadeType.ALL})
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(
         name="GameDeck",

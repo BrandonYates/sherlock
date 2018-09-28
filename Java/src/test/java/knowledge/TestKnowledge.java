@@ -1,3 +1,4 @@
+package knowledge;
 
 public class TestKnowledge {
 

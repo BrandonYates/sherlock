@@ -14,7 +14,7 @@ public class Player {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", updatable = false, nullable = false)
   private long id;
-  @Column(insertable = false, updatable = false)
+  @Column(insertable = true, updatable = true, nullable = false)
   private String label;
 
   @OneToOne(cascade = {CascadeType.ALL})
