@@ -38,13 +38,14 @@ public class Game extends GameObject {
     public void makePlayers(String[] players) {
 
         this.players = new ArrayList<>();
-        List<CardName> names = CardName.getCharacterNames();
+        List<CardName> names = LogicUtils.shuffle(CardName.getCharacterNames());
         Player tempPlayer;
         GamePiece tempPiece;
         for(int i = 0; i < players.length; ++i) {
 
             tempPlayer = new Player(players[i]);
             String characterName = names.get(i).stringify();
+            System.out.println("characterName: " + characterName);
             Character character = new Character(characterName);
             Point startPos = character.StartPosition();
 

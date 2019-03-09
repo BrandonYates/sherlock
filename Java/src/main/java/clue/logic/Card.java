@@ -55,7 +55,8 @@ public class Card extends GameObject {
       newCards.add(temp);
     });
 
-    return newCards;
+
+    return LogicUtils.shuffle(newCards);
   }
 
   public static List<Card> constructDeck(Class<Card> cardClass, List<String> cardNames, CardType cardType) {
@@ -87,6 +88,6 @@ public class Card extends GameObject {
       }
     }
 
-    return newCards;
+    return LogicUtils.shuffle(newCards);
   }
 }

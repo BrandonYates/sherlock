@@ -25,8 +25,8 @@ public class Character extends Card {
     }
 
     public enum Name {
-        MUSTARD("Colonel Mustard", 0, 0),
-        PLUM("Professor Plum", 1, 1),
+        MUSTARD("Col. Mustard", 0, 0),
+        PLUM("Prof. Plum", 1, 1),
         MRGREEN("Mr. Green", 2, 2),
         PEACOCK("Mrs. Peacock", 3, 3),
         SCARLET("Miss Scarlet", 4, 4),
@@ -48,6 +48,7 @@ public class Character extends Card {
                     return name;
                 }
             }
+
             return null;
         }
         public String toSring() {

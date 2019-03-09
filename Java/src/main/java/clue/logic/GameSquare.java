@@ -9,10 +9,10 @@ import javax.persistence.OneToOne;
 @Entity
 public class GameSquare extends GameObject {
 
-    boolean occupied = false;
-    boolean valid = false;
+    private boolean occupied = false;
+    private boolean valid = false;
     @OneToOne
-    GamePiece piece = null;
+    private GamePiece piece = null;
 
     public GameSquare() {
       super();
@@ -32,16 +32,24 @@ public class GameSquare extends GameObject {
     }
 
     public GamePiece setPiece(GamePiece piece) {
-        
-        if(!this.occupied && piece != null) {
 
-        }
-        else if (piece == null) {
-            occupied = false;
-            this.piece = piece;
-        }
+      System.out.println("valid: " + valid);
+      if(!this.valid) {
+        return null;
+      }
 
-        return this.piece;
+      if(!this.occupied && piece != null) {
+        this.occupied = true;
+        this.piece = piece;
+      }
+      else if(piece == null) {
+        occupied = false;
+        this.piece = null;
+      }
+
+      System.out.println("occupied: " + occupied);
+
+      return this.piece;
     }
 
     public boolean isValid() {

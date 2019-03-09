@@ -1,6 +1,7 @@
 package clue.controllers;
 
 import clue.logic.Game;
+import clue.logic.GameBoard;
 import clue.logic.GameObject;
 import com.google.gson.Gson;
 import org.hibernate.HibernateException;
@@ -94,5 +95,12 @@ public class GameController {
     }
 
     return serializer.toJson(newGame);
+  }
+
+  @RequestMapping("/testBoard")
+  public String getTestBoard() {
+    GameBoard testBoard = new GameBoard();
+
+    return testBoard.toString();
   }
 }
