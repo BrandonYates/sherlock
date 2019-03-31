@@ -48,9 +48,9 @@ public class PlayerKnowledge {
         rooms = new ArrayList<>();
         known = new HashMap<>();
 
-        for(Character.Name name: Character.Name.values()) {
-            characters.add(new Character(name));
-            known.put(name.toString(), Info.UNKNOWN);
+        for(Character.Identity identity : Character.Identity.values()) {
+            characters.add(new Character(identity));
+            known.put(identity.toString(), Info.UNKNOWN);
         }
         for(Weapon.Name name: Weapon.Name.values()) {
             weapons.add(new Weapon(name));

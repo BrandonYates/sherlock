@@ -1,9 +1,12 @@
 package clue.logic;
 
+import byates.game.GameObject;
+
 import javax.persistence.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -47,27 +50,17 @@ public class Card extends GameObject {
     return sb.toString();
   }
 
-  public static List<Card> constructDeck(CardType type, List<String> cardNames) {
-
-    List<Card> newCards = new ArrayList<>();
-    cardNames.forEach(cName -> {
-      Card temp = new Card(cName, type);
-      newCards.add(temp);
-    });
-
-
-    return LogicUtils.shuffle(newCards);
-  }
-
-  public static List<Card> constructDeck(Class<Card> cardClass, List<String> cardNames, CardType cardType) {
+  public static List<Card> constructDeck(Class<Card> cardClass, List<String> cardNames, CardType cardType)
+    throws IllegalArgumentException {
 
     List<Card> newCards = new ArrayList<>();
     Constructor<Card> cardConstructor = null;
+
     try {
       cardConstructor = cardClass.getConstructor(String.class);
-    } catch (NoSuchMethodException e) {
-      System.out.println("Class: " + cardClass.getName() +
-          " has no constructor method for String.class");
+    }
+    catch (NoSuchMethodException tNSME) {
+      throw new IllegalArgumentException("cardClass must implement a constructor with a single String for an argument");
     }
 
     if(cardConstructor == null) {
@@ -88,6 +81,7 @@ public class Card extends GameObject {
       }
     }
 
-    return LogicUtils.shuffle(newCards);
+    Collections.shuffle(newCards);
+    return newCards;
   }
 }

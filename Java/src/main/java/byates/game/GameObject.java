@@ -1,4 +1,4 @@
-package clue.logic;
+package byates.game;
 
 import javax.persistence.*;
 

@@ -1,17 +1,15 @@
-package logic;
+package clue.knowledge;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-public class LogicUtilsTest {
+public class KnowledgeTest {
 
   @Test
-  public void TestShuffle() {
-
-    System.out.println("testShuffle");
+  public void TestMcTest() {
+    System.out.println("TestMcTest");
 
     Assert.assertTrue(true);
     Assert.assertFalse(false);
   }
-
 }

@@ -26,12 +26,12 @@ public enum CardName {
   LIBRARY("Library"),
   LOUNGE("Lounge"),
   STUDY("Study"),
-  INVALID("Invalid Name");
+  INVALID("Invalid Identity");
 
   private String _humanReadable;
 
   CardName() {
-    _humanReadable = "Invalid Name";
+    _humanReadable = "Invalid Identity";
   }
 
   CardName(String readable) {

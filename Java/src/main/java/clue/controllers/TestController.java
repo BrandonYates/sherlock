@@ -1,6 +1,6 @@
 package clue.controllers;
 
-import clue.logic.GameBoard;
+import byates.game.GameBoard;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

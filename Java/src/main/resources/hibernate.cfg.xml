@@ -4,29 +4,29 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name = "hibernate.dialect">
+        <property identity = "hibernate.dialect">
             org.hibernate.dialect.MySQL5Dialect
         </property>
 
-        <property name = "hibernate.connection.driver_class">
+        <property identity = "hibernate.connection.driver_class">
             com.mysql.jdbc.Driver
         </property>
 
-        <property name = "hibernate.connection.url">
+        <property identity = "hibernate.connection.url">
             jdbc:mysql://localhost/sherlock
         </property>
 
-        <property name = "hibernate.connection.username">
+        <property identity = "hibernate.connection.username">
             springuser
         </property>
 
-        <property name = "hibernate.connection.password">
+        <property identity = "hibernate.connection.password">
             ThePassword
         </property>
 
-        <property name="show_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
-        <property name="hibernate.hbm2ddl.identity">create</property>
+        <property identity="show_sql">true</property>
+        <property identity="hibernate.hbm2ddl.auto">create</property>
+        <property identity="hibernate.hbm2ddl.identity">create</property>
 
         <!-- List of XML mapping files -->
         <!--<mapping resource = "hibernate/GameObject.hbm.xml"/>-->
@@ -39,10 +39,10 @@
         <mapping class="clue.logic.CardType"/>
         <mapping class="clue.logic.Character" />
         <mapping class="clue.logic.Game"/>
-        <mapping class="clue.logic.GameBoard"/>
-        <mapping class="clue.logic.GameObject"/>
-        <mapping class="clue.logic.GamePiece"/>
-        <mapping class="clue.logic.GameSquare"/>
+        <mapping class="byates.game.GameBoard"/>
+        <mapping class="byates.game.GameObject"/>
+        <mapping class="byates.game.GamePiece"/>
+        <mapping class="byates.game.GameSquare"/>
         <mapping class="clue.logic.Player"/>
         <mapping class="clue.logic.Room"/>
         <mapping class="clue.logic.Weapon"/>

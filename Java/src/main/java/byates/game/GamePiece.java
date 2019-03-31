@@ -1,12 +1,14 @@
-package clue.logic;
+package byates.game;
+
+import byates.game.GameObject;
 
 import javax.persistence.Entity;
 
 @Entity
 public class GamePiece extends GameObject {
 
-  private int _x;
-  private int _y;
+  private int _x = -1;
+  private int _y = -1;
 
   public GamePiece() {
     super();
@@ -38,5 +40,10 @@ public class GamePiece extends GameObject {
 
   public int getY() {
       return _y;
+  }
+
+  @Override
+  public String toString() {
+    return "(" + _x + ", " + _y + ")";
   }
 }

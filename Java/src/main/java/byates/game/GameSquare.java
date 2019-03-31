@@ -1,7 +1,8 @@
-package clue.logic;
+package byates.game;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -9,8 +10,11 @@ import javax.persistence.OneToOne;
 @Entity
 public class GameSquare extends GameObject {
 
+    @Transient
     private boolean occupied = false;
+    @Transient
     private boolean valid = false;
+
     @OneToOne
     private GamePiece piece = null;
 
@@ -33,7 +37,6 @@ public class GameSquare extends GameObject {
 
     public GamePiece setPiece(GamePiece piece) {
 
-      System.out.println("valid: " + valid);
       if(!this.valid) {
         return null;
       }
@@ -47,8 +50,6 @@ public class GameSquare extends GameObject {
         this.piece = null;
       }
 
-      System.out.println("occupied: " + occupied);
-
       return this.piece;
     }
 
@@ -58,5 +59,13 @@ public class GameSquare extends GameObject {
     
     public boolean isOccupied() {
         return occupied;
+    }
+
+    @Override
+    public String toString() {
+
+        String tPieceString = (piece == null) ? "piece: null" : piece.toString();
+
+        return tPieceString + " isValid: " + valid + " | isOccupied: " + occupied;
     }
 }

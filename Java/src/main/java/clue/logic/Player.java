@@ -1,5 +1,6 @@
 package clue.logic;
 
+import byates.game.GamePiece;
 import clue.knowledge.PlayerKnowledge;
 
 import javax.persistence.*;
@@ -16,7 +17,6 @@ public class Player {
   private long id;
   @Column(insertable = true, updatable = true, nullable = false)
   private String label;
-
   @OneToOne(cascade = {CascadeType.ALL})
   private GamePiece piece;
   @OneToMany(cascade = {CascadeType.ALL})
@@ -42,6 +42,10 @@ public class Player {
 
   public void setLabel(String aLabel) {
     label = aLabel;
+  }
+
+  public GamePiece getPiece() {
+    return piece;
   }
 
   public void setPiece(GamePiece newPiece) {

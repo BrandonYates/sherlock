@@ -1,8 +1,8 @@
 package clue.controllers;
 
 import clue.logic.Game;
-import clue.logic.GameBoard;
-import clue.logic.GameObject;
+import byates.game.GameBoard;
+import byates.game.GameObject;
 import com.google.gson.Gson;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

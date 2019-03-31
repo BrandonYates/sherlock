@@ -8,68 +8,21 @@ import clue.logic.Weapon;
 import javax.persistence.*;
 
 @Entity
-public class Suggestion {
+public class Suggestion extends CluedoScenario {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
   @OneToOne
-  private Player Player;
-  @OneToOne
-  private Room room;
-  @OneToOne
-  private Weapon weapon;
-  @OneToOne
-  private Character character;
+  private Player player;
 
-  public Suggestion() {
-
+  public Suggestion(Player aPlayer, Character aCharacter, Room aRoom, Weapon aWeapon) {
+    super(aCharacter, aRoom, aWeapon);
+    player = aPlayer;
   }
 
-  public Suggestion(Player aPlayer, Room aRoom, Weapon aWeapon, Character aCharacter) {
-    Player = aPlayer;
-    room = aRoom;
-    weapon = aWeapon;
-    character = aCharacter;
+  public Player getPlayer() {
+    return player;
   }
 
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public clue.logic.Player getPlayer() {
-    return Player;
-  }
-
-  public void setPlayer(clue.logic.Player player) {
-    Player = player;
-  }
-
-  public Room getRoom() {
-    return room;
-  }
-
-  public void setRoom(Room room) {
-    this.room = room;
-  }
-
-  public Weapon getWeapon() {
-    return weapon;
-  }
-
-  public void setWeapon(Weapon weapon) {
-    this.weapon = weapon;
-  }
-
-  public Character getCharacter() {
-    return character;
-  }
-
-  public void setCharacter(Character character) {
-    this.character = character;
+  public void setPlayer(Player player) {
+    this.player = player;
   }
 }

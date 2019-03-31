@@ -18,4 +18,9 @@ public enum CardType {
     label = str;
     index = i;
   }
+
+  @Override
+  public String toString() {
+    return label;
+  }
 }
