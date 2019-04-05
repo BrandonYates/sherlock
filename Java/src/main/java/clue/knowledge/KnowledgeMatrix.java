@@ -34,54 +34,53 @@ public class KnowledgeMatrix {
   private List<CardName> possibleWeapons;
   @ElementCollection
   private List<CardName> possibleRooms;
+
   @OneToOne
-  private Character solutionCharacter = null;
-  @OneToOne
-  private Weapon solutionWeapon = null;
-  @OneToOne
-  private Room solutionRoom = null;
+  private CluedoScenario solutionScenario;
 
   public KnowledgeMatrix() {
     matrix = new HashMap<>();
+    possibleCharacters = new ArrayList<>();
+    possibleRooms = new ArrayList<>();
+    possibleWeapons = new ArrayList<>();
+    solutionScenario = new CluedoScenario();
   }
 
-  //get the players from the game and set up their knowledge
-  //at the beginning of the game we don't know anything about
-  //all player knowledge, we will fill it in as the game progresses
+  // Get the players from the game and set up their knowledge.
+  // At the beginning of the game we don't know anything about
+  // all player knowledge, we will fill it in as the game progresses.
   public KnowledgeMatrix(Player aPlayer, List<Player> otherPlayers) {
     ownPlayer = aPlayer;
     players = otherPlayers;
 
     matrix = new HashMap<>();
 
-
     for(Player player: players) {
       matrix.put(player.getLabel(), new PlayerKnowledge(null));
     }
+
     possibleCharacters = new ArrayList<>();
     possibleWeapons = new ArrayList<>();
     possibleRooms = new ArrayList<>();
 
-    CardName.getCharacterNames().forEach(c -> possibleCharacters.add(c));
-    CardName.getWeaponNames().forEach(w -> possibleWeapons.add(w));
-    CardName.getRoomNames().forEach(r -> possibleRooms.add(r));
+    possibleCharacters.addAll(CardName.getCharacterNames());
+    possibleRooms.addAll(CardName.getRoomNames());
+    possibleWeapons.addAll(CardName.getWeaponNames());
 
-
-    String tLabel;
     CardType type;
     for(Card card: ownPlayer.getCards()) {
 
-      tLabel = card.getLabel();
       type = card.getCardType();
+      CardName tCardName = CardName.getNameEnum(card.getLabel());
       switch (type) {
         case CHARACTER:
-          possibleCharacters.remove(tLabel);
+          possibleCharacters.remove(tCardName);
           break;
         case WEAPON:
-          possibleWeapons.remove(tLabel);
+          possibleWeapons.remove(tCardName);
           break;
         case ROOM:
-          possibleRooms.remove(tLabel);
+          possibleRooms.remove(tCardName);
           break;
       }
     }
@@ -165,27 +164,10 @@ public class KnowledgeMatrix {
     this.possibleRooms = possibleRooms;
   }
 
-  public Character getSolutionCharacter() {
-    return solutionCharacter;
+  public CluedoScenario getSolutionScenario() {
+    return solutionScenario;
   }
-
-  public void setSolutionCharacter(Character solutionCharacter) {
-    this.solutionCharacter = solutionCharacter;
-  }
-
-  public Weapon getSolutionWeapon() {
-    return solutionWeapon;
-  }
-
-  public void setSolutionWeapon(Weapon solutionWeapon) {
-    this.solutionWeapon = solutionWeapon;
-  }
-
-  public Room getSolutionRoom() {
-    return solutionRoom;
-  }
-
-  public void setSolutionRoom(Room solutionRoom) {
-    this.solutionRoom = solutionRoom;
+  public void setSolutionScenario(CluedoScenario solutionScenario) {
+    this.solutionScenario = solutionScenario;
   }
 }

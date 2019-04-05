@@ -26,11 +26,11 @@ public class PlayerKnowledge {
     @ElementCollection
     private List<Room> rooms;
 
-    //maps the name of a card to what an external player
-    //could know about their knowledge
-    //example: Player 1 was handed the Rope card as evidence
-    //against an accusation. Thus in the Rope card is mapped to HAS 
-    //Because Player 1 knows that Player 2 HAS that card
+    // Maps the name of a card to what an external player
+    // could know about their knowledge.
+    // example: Player 1 was handed the Rope card as evidence
+    // against an accusation. Thus the Rope card is mapped to HAS
+    // Because Player 1 knows that Player 2 HAS that card.
     @ElementCollection
     private Map<String, Info> known;
 
@@ -41,7 +41,7 @@ public class PlayerKnowledge {
         known = new HashMap<>();
     }
 
-    public PlayerKnowledge(List<Card> cards) {
+    public PlayerKnowledge(List<Card> aCards) {
 
         characters = new ArrayList<>();
         weapons = new ArrayList<>();
@@ -61,8 +61,10 @@ public class PlayerKnowledge {
             known.put(name.toString(), Info.UNKNOWN);
         }
 
-        for(Card card: cards) {
-            known.put(card.toString(), Info.HAS);
+        if(aCards != null) {
+            for(Card card: aCards) {
+                known.put(card.toString(), Info.HAS);
+            }
         }
     }
 

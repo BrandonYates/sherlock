@@ -14,23 +14,18 @@ public class Suggestion {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
   @OneToOne
-  private Player Player;
+  private Player player;
+
   @OneToOne
-  private Room room;
-  @OneToOne
-  private Weapon weapon;
-  @OneToOne
-  private Character character;
+  private CluedoScenario suggestedScenario;
 
   public Suggestion() {
 
   }
 
-  public Suggestion(Player aPlayer, Room aRoom, Weapon aWeapon, Character aCharacter) {
-    Player = aPlayer;
-    room = aRoom;
-    weapon = aWeapon;
-    character = aCharacter;
+  public Suggestion(Player aPlayer, Character aCharacter, Room aRoom, Weapon aWeapon) {
+    player = aPlayer;
+    suggestedScenario = new CluedoScenario(aCharacter, aRoom, aWeapon);
   }
 
   public int getId() {
@@ -42,34 +37,17 @@ public class Suggestion {
   }
 
   public clue.logic.Player getPlayer() {
-    return Player;
+    return player;
   }
 
   public void setPlayer(clue.logic.Player player) {
-    Player = player;
+    this.player = player;
   }
 
-  public Room getRoom() {
-    return room;
+  public CluedoScenario getSuggestedScenario() {
+    return suggestedScenario;
   }
-
-  public void setRoom(Room room) {
-    this.room = room;
-  }
-
-  public Weapon getWeapon() {
-    return weapon;
-  }
-
-  public void setWeapon(Weapon weapon) {
-    this.weapon = weapon;
-  }
-
-  public Character getCharacter() {
-    return character;
-  }
-
-  public void setCharacter(Character character) {
-    this.character = character;
+  public void setSuggestedScenario(CluedoScenario suggestedScenario) {
+    this.suggestedScenario = suggestedScenario;
   }
 }
